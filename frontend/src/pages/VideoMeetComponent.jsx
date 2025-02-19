@@ -48,6 +48,8 @@ export default function VideoMeetComponent() {
 
     let [message, setMessage] = useState("");
 
+    
+
     let [newMessages, setNewMessages] = useState(3);
 
     let [askForUsername, setAskForUsername] = useState(true);
@@ -419,25 +421,32 @@ export default function VideoMeetComponent() {
         setMessage(e.target.value);
     }
 
-    const addMessage = (data, sender, socketIdSender) => {
-        setMessages((prevMessages) => [
-            ...prevMessages,
-            { sender: sender, data: data }
-        ]);
-        if (socketIdSender !== socketIdRef.current) {
-            setNewMessages((prevNewMessages) => prevNewMessages + 1);
+    const sendMessage = () => {
+        if (message.trim() !== "") {
+            socketRef.current.emit('chat-message', message, username);
+            setMessages(prevMessages => [...prevMessages, { sender: username, data: message }]);
+            setMessage("");
         }
     };
-
-
-
-    let sendMessage = () => {
-        console.log(socketRef.current);
-        socketRef.current.emit('chat-message', message, username)
-        setMessage("");
-
-         this.setState({ message: "", sender: username })
-    }
+    
+    const addMessage = (data, sender, socketIdSender) => {
+        setMessages(prevMessages => [
+            ...prevMessages,
+            { sender, data }
+        ]);
+        if (socketIdSender !== socketIdRef.current) {
+            setNewMessages(prevNewMessages => prevNewMessages + 1);
+        }
+    };
+    
+    // Ensure the chat window toggles correctly
+    const toggleChat = () => {
+        setModal(prev => !prev);
+        if (!showModal) {
+            setNewMessages(0); // Reset unread messages count when opening
+        }
+    };
+    
 
     
     let connect = () => {
@@ -451,13 +460,21 @@ export default function VideoMeetComponent() {
 
             {askForUsername === true ?
 
-                <div>
+                <div className={styles.lobbyContainer}>
 
 
                     <h2>Enter into Lobby </h2>
-                    <TextField id="outlined-basic" label="Username" value={username} onChange={e => setUsername(e.target.value)} variant="outlined" />
-                    <Button variant="contained" onClick={connect}>Connect</Button>
-
+                    <div className={styles.inputRow}>
+                    <TextField 
+                    id="outlined-basic" 
+                    label="Username" 
+                    value={username} 
+                    onChange={e => setUsername(e.target.value)} 
+                     variant="outlined" 
+                />
+            <Button variant="contained" onClick={connect}>Connect</Button>
+        </div>
+    
 
                     <div>
                         <video ref={localVideoref} autoPlay muted></video>

@@ -8,15 +8,15 @@
     background: linear-gradient(135deg, #001f3f, #000a1f);
     color: white;
     overflow: hidden;
-    padding: 10px; /* Added padding for better spacing */
+    padding: 10px; 
 }
 
 /* Local User Video */
 .meetUserVideo {
     position: fixed;
-    bottom: 10vh; /* Adjusted position */
+    bottom: 10vh; 
     left: 2vw;
-    height: 20vh; /* Increased height */
+    height: 20vh; 
     width: auto;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
@@ -30,15 +30,111 @@
 /* Buttons */
 .buttonContainers {
     position: absolute;
-    bottom: 3vh; /* Adjusted position */
+    bottom: 3vh; 
     width: 100%;
     display: flex;
     justify-content: center;
     gap: 15px;
     background: rgba(0, 0, 0, 0.6);
-    padding: 15px 0; /* Increased padding */
+    padding: 15px 0; 
     border-radius: 10px;
 }
+
+/* username styling */
+.lobbyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #e0e7ff, #f3f4f6); /* Gradient background */
+    border-radius: 2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    animation: fadeIn 0.6s ease;
+  }
+  
+  .lobbyContainer:hover {
+    transform: scale(1.02);
+  }
+  
+  .lobbyContainer h2 {
+    font-size: 2.5rem;
+    color: #1e3a8a; /* Tailwind's indigo-800 */
+    margin-bottom: 2rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .lobbyContainer .MuiTextField-root {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .lobbyContainer .MuiButton-root {
+    background-color: #4f46e5; /* Tailwind's indigo-600 */
+    color: white;
+    padding: 0.75rem 2.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .lobbyContainer .MuiButton-root:hover {
+    background-color: #4338ca; /* Tailwind's indigo-700 */
+    box-shadow: 0 6px 15px rgba(67, 56, 202, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  .lobbyContainer video {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 1rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .lobbyContainer video:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+   /* input row */
+  .inputRow {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .inputRow .MuiTextField-root {
+    flex: 1;
+  }
+  
+  .inputRow .MuiButton-root {
+    white-space: nowrap;
+    padding: 0.75rem 2rem;
+  }
+  
+  
 
 /* Button Icons */
 .buttonContainers svg {
@@ -61,15 +157,15 @@
     justify-content: center;
     padding: 15px;
     width: 100%;
-    height: 100vh; /* Adjusted height */
-    overflow-y: auto; /* Added scroll for overflow */
+    height: 100vh; 
+    overflow-y: auto; 
 }
 
 /* Conference Video Styling */
 .conferenceView video {
-    width: 90vw; /* Increased width */
-    height: 80vh; /* Increased height */
-    min-width: 80vw; /* Adjusted minimum width */
+    width: 90vw;
+    height: 80vh; 
+    min-width: 80vw; 
     border-radius: 12px;
     object-fit: cover;
     box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
@@ -78,9 +174,9 @@
 /* Chat Box */
 .chatRoom {
     position: fixed;
-    top: 5vh; /* Adjusted position */
+    top: 5vh; 
     right: 2vw;
-    height: 85vh; /* Adjusted height */
+    height: 85vh; 
     width: 28vw;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
